@@ -1,1 +1,46 @@
-<h3>Testing:: this works!</h3>
+<!-- Navigation -->
+<nav class="page navigation">
+  <ul class="pagination">
+    <li 
+      class="page-item"
+      [class.disabled]=" currentPage === 0 "
+    >
+      <a 
+        href="#" 
+        class="page-link"
+        (click)="currentPage = currentPage - 1"
+      >
+        Prev
+      </a>
+    </li>
+    <li 
+      class="page-item"
+      [class.active]="currentPage === i"
+      *ngFor="let img of images;let i = index"
+    >
+      <a 
+        href="#" 
+        class="page-link"
+        (click)="currentPage = i"
+      >
+        {{ i + 1 }}
+      </a>
+    </li>
+    <li 
+      class="page-item"
+      [class.disabled]="currentPage === images.length - 1"
+    >
+      <a 
+        href="#" 
+        class="page-link"
+        (click)="currentPage = currentPage + 1"
+      >
+        Next
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<!-- Content, directly below NavBar, but connected using "currentPage" (<< like a counter) and index -->
+<h3>{{ images[currentPage].title }}</h3>
+<img [src]="images[currentPage].url" alt="">
